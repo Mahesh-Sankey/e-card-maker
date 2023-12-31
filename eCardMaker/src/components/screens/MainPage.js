@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import InviteFriendsScreen from '../commonComponents/Share';
 
 export const MainPage = (props) => {
     return (
@@ -8,13 +9,19 @@ export const MainPage = (props) => {
                 <View style={[styles.section1]}>
                     <TouchableOpacity onPress={() => props.navigation.navigate('EditVegPage')} activeOpacity={0.7}>
                         <View style={[styles.headerCardStyle]}>
-                            <Image style={styles.headerImgStyle} source={require('../asset/edit.png')} />
+                            <Image style={styles.headerImgStyle} source={require('../asset/vegsIcon.jpg')} />
                             <Text style={styles.headerTextStyles}>{'Veg'}</Text>
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => props.navigation.navigate('CreateTemplatePage')} activeOpacity={0.7}>
+                    <TouchableOpacity activeOpacity={0.7}>
                         <View style={[styles.headerCardStyle]}>
-                            <Image style={styles.headerImgStyle} source={require('../asset/edit.png')} />
+                            <Image style={styles.headerImgStyle} source={require('../asset/vegetable.jpg')} />
+                            <Text style={styles.headerTextStyles}>{'Coming Soon'}</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.7}>
+                        <View style={[styles.headerCardStyle]}>
+                            <Image style={styles.headerImgStyle} source={require('../asset/vegetable.jpg')} />
                             <Text style={styles.headerTextStyles}>{'Coming Soon'}</Text>
                         </View>
                     </TouchableOpacity>
@@ -22,44 +29,27 @@ export const MainPage = (props) => {
                 <View style={[styles.section1]}>
                     <TouchableOpacity onPress={() => props.navigation.navigate('CreateTemplatePage')} activeOpacity={0.7}>
                         <View style={[styles.headerCardStyle]}>
-                            <Image style={styles.headerImgStyle} source={require('../asset/edit.png')} />
+                            <Image style={styles.headerImgStyle} source={require('../asset/nonvegsIcon.jpg')} />
                             <Text style={styles.headerTextStyles}>{'Non-Veg'}</Text>
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => props.navigation.navigate('CreateTemplatePage')} activeOpacity={0.7}>
+                    <TouchableOpacity activeOpacity={0.7}>
                         <View style={[styles.headerCardStyle]}>
-                            <Image style={styles.headerImgStyle} source={require('../asset/edit.png')} />
+                            <Image style={styles.headerImgStyle} source={require('../asset/vegetable.jpg')} />
+                            <Text style={styles.headerTextStyles}>{'Coming Soon'}</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.7}>
+                        <View style={[styles.headerCardStyle]}>
+                            <Image style={styles.headerImgStyle} source={require('../asset/vegetable.jpg')} />
                             <Text style={styles.headerTextStyles}>{'Coming Soon'}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
             </View>
 
-            <View style={[styles.subContainerBottom]}>
-                <TouchableOpacity onPress={() => props.navigation.navigate('CreateTemplatePage')} activeOpacity={0.7}>
-                    <View style={[styles.cardStyle]}>
-                        <Image style={styles.editImg} source={require('../asset/edit.png')} />
-                        <Text style={styles.textStyles}>{'Create'}</Text>
-                    </View>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => props.navigation.navigate('CreateTemplatePage')} activeOpacity={0.7}>
-                    <View style={[styles.cardStyle]}>
-                        <Image style={styles.editImg} source={require('../asset/edit.png')} />
-                        <Text style={styles.textStyles}>{'Create'}</Text>
-                    </View>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => props.navigation.navigate('CreateTemplatePage')} activeOpacity={0.7}>
-                    <View style={[styles.cardStyle]}>
-                        <Image style={styles.editImg} source={require('../asset/edit.png')} />
-                        <Text style={styles.textStyles}>{'Create'}</Text>
-                    </View>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => props.navigation.navigate('CreateTemplatePage')} activeOpacity={0.7}>
-                    <View style={[styles.cardStyle]}>
-                        <Image style={styles.editImg} source={require('../asset/edit.png')} />
-                        <Text style={styles.textStyles}>{'Create'}</Text>
-                    </View>
-                </TouchableOpacity>
+            <View>
+                <InviteFriendsScreen />
             </View>
         </View>
     );
@@ -68,15 +58,20 @@ export const MainPage = (props) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: '#f0f8ff'
     },
     title: {
         fontSize: 30,
     },
     subContainerBottom: {
         flexDirection: 'row',
-        padding: 20,
+        padding: 10,
         flex: 0.2,
-        backgroundColor: 'yellow',
+        width: '100%',
+        justifyContent: 'center',
+        borderTopRightRadius: 30,
+        borderTopLeftRadius: 30,
+        backgroundColor: '#51abcb',
         alignSelf: 'center',
     },
     subContainerHead: {
@@ -93,10 +88,11 @@ const styles = StyleSheet.create({
         resizeMode: 'contain'
     },
     headerImgStyle: {
-        height: 45,
-        width: 45,
+        height: 98,
+        width: '100%',
+        borderRadius: 30,
         alignSelf: 'center',
-        resizeMode: 'contain'
+        resizeMode: 'stretch',
     },
     cardStyle: {
         backgroundColor: 'white',
@@ -124,8 +120,11 @@ const styles = StyleSheet.create({
     headerTextStyles: {
         color: 'black',
         fontFamily: 'Roboto',
-        fontSize: 16,
+        fontSize: 14,
+        fontWeight: '800',
         textAlign: 'center',
+        paddingBottom: 8,
+        paddingTop: 2,
     },
     section1: {
         flexDirection: 'column',
