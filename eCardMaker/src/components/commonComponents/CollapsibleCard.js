@@ -2,11 +2,22 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet, ScrollView } from 'react-native';
 import Collapsible from 'react-native-collapsible';
 import { BangdaCurry, ChickenChili, ChickenSukka, FodnicheVaran, MaharashtiranChickenThali, MuttonCurry, MuttonCurryMarination, MuttonMasala, PaneerGhotala, PomfretFry, ShahiPaneer, SurmaiRavaFry } from './html/Description';
-import varanIcon from '../asset/receipeIcon/varanIcon.jpg'
 
-const CollapsibleCard = ({ data, img }) => {
+const CollapsibleCard = ({ data }) => {
     const [isCollapsed, setIsCollapsed] = useState(true);
-    console.log('data', data);
+
+    const renderImage = () => {
+        if (typeof data.source === 'string') {
+            // Remote image using uri
+            return <Image source={{ uri: data.source }} style={styles.cardImage} />;
+        } else if (typeof data.source === 'number') {
+            // Local image using require
+            return <Image source={data.source} style={styles.cardImage} />;
+        } else {
+            // Handle other cases or provide a default image
+            return null;
+        }
+    };
 
     return (
         <View style={styles.cardContainer}>
@@ -16,11 +27,7 @@ const CollapsibleCard = ({ data, img }) => {
                 </Text>
             </TouchableOpacity>
             <Collapsible collapsed={isCollapsed}>
-                <Image
-                    source={{ uri: data.source }}
-                    alt={data.source}
-                    style={styles.cardImage}
-                />
+                {renderImage()}
                 <ScrollView>
                     <Text style={styles.cardDescription}>{data.description}</Text>
                 </ScrollView>
@@ -28,6 +35,7 @@ const CollapsibleCard = ({ data, img }) => {
         </View>
     );
 };
+
 
 //-----------------------Veg Section----------------------------------
 const VegData = [
@@ -61,23 +69,23 @@ export const VegScreen = () => {
 };
 
 //--------------------Non-Veg Section----------------------------------
-// const MuttonData = [
-//     {
-//         title: 'Maharashtrian Mutton Curry',
-//         source: require('../asset/receipeIcon/muttonCurryIcon.jpg'),
-//         description: MuttonCurry,
-//     },
-//     {
-//         title: 'Mutton Masala',
-//         source: require('../asset/receipeIcon/muttonMasalaIcon.jpg'),
-//         description: MuttonMasala,
-//     },
-//     {
-//         title: 'Mutton Marination Fry',
-//         source: require('../asset/receipeIcon/muttonMarinateIcon.jpg'),
-//         description: MuttonCurryMarination,
-//     },
-// ];
+const MuttonData = [
+    {
+        title: 'Maharashtrian Mutton Curry',
+        source: require('../asset/receipeIcon/muttonCurryIcon.jpg'),
+        description: MuttonCurry,
+    },
+    {
+        title: 'Mutton Masala',
+        source: require('../asset/receipeIcon/muttonMasalaIcon.jpg'),
+        description: MuttonMasala,
+    },
+    {
+        title: 'Mutton Marination Fry',
+        source: require('../asset/receipeIcon/muttonMarinateIcon.jpg'),
+        description: MuttonCurryMarination,
+    },
+];
 
 const MuttonScreen = () => {
     return (
@@ -91,23 +99,23 @@ const MuttonScreen = () => {
     );
 };
 
-// const ChickenData = [
-//     {
-//         title: 'Maharashtiran Chicken Thali',
-//         source: require('../asset/receipeIcon/chickenMahaIcon.jpg'),
-//         description: MaharashtiranChickenThali,
-//     },
-//     {
-//         title: 'Chicken Sukka',
-//         source: require('../asset/receipeIcon/chickenSukkaIconn.jpg'),
-//         description: ChickenSukka,
-//     },
-//     {
-//         title: 'Chicken Chili',
-//         source: require('../asset/receipeIcon/chickenChilliIcon.jpg'),
-//         description: ChickenChili,
-//     },
-// ];
+const ChickenData = [
+    {
+        title: 'Maharashtiran Chicken Thali',
+        source: require('../asset/receipeIcon/chickenMahaIcon.jpg'),
+        description: MaharashtiranChickenThali,
+    },
+    {
+        title: 'Chicken Sukka',
+        source: require('../asset/receipeIcon/chickenSukkaIconn.jpg'),
+        description: ChickenSukka,
+    },
+    {
+        title: 'Chicken Chili',
+        source: require('../asset/receipeIcon/chickenChilliIcon.jpg'),
+        description: ChickenChili,
+    },
+];
 
 export const ChickenScreen = () => {
     return (
@@ -121,23 +129,23 @@ export const ChickenScreen = () => {
     );
 };
 
-// const FishData = [
-//     {
-//         title: 'Bangda Curry',
-//         source: require('../asset/receipeIcon/bangdaFryIcon.jpg'),
-//         description: BangdaCurry,
-//     },
-//     {
-//         title: 'Pomfret Fry',
-//         source: require('../asset/receipeIcon/pompretFryIcon.jpg'),
-//         description: PomfretFry,
-//     },
-//     {
-//         title: 'Surmai Rava Fry',
-//         source: require('../asset/receipeIcon/surmaiFryIcon.jpg'),
-//         description: SurmaiRavaFry,
-//     },
-// ];
+const FishData = [
+    {
+        title: 'Bangda Curry',
+        source: require('../asset/receipeIcon/bangdaFryIcon.jpg'),
+        description: BangdaCurry,
+    },
+    {
+        title: 'Pomfret Fry',
+        source: require('../asset/receipeIcon/pompretFryIcon.jpg'),
+        description: PomfretFry,
+    },
+    {
+        title: 'Surmai Rava Fry',
+        source: require('../asset/receipeIcon/surmaiFryIcon.jpg'),
+        description: SurmaiRavaFry,
+    },
+];
 
 export const FishScreen = () => {
     return (
@@ -155,7 +163,6 @@ export const FishScreen = () => {
 const styles = StyleSheet.create({
     container: {
         padding: 10,
-        backgroundColor: 'red',
         width: '100%'
     },
     cardContainer: {
@@ -170,14 +177,14 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginBottom: 10,
         padding: 10,
-        backgroundColor: '#3498db',
+        backgroundColor: '#be4d25',
         color: '#ffffff',
     },
     cardImage: {
         width: '100%',
         height: 250,
         marginBottom: 10,
-        resizeMode: 'contain',
+        resizeMode: 'stretch'
     },
     cardDescription: {
         textAlign: 'left',
