@@ -8,7 +8,7 @@ const InviteFriendsScreen = () => {
       const shareOptions = {
         title: 'Invite Friends',
         message: 'Check out this amazing app! Download it now.',
-        url: 'https://your-app-download-link.com',
+        url: 'https://play.google.com/store/apps/details?id=com.ecardmaker',
         subject: 'Invite to My App', // for email
       };
 
