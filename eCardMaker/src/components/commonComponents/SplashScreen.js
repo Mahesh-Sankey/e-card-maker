@@ -14,6 +14,7 @@ const SplashScreen = ({ navigation }) => {
     return () => clearTimeout(delay);
   }, [navigation]);
 
+  
   return (
     <View style={styles.container}>
       <StatusBar hidden />
